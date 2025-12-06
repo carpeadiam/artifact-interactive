@@ -190,7 +190,7 @@ def generate_app(label_id):
     icon = None
     
     if not app_name or not app_id or not mainURL:
-        return jsoify({"error": "name, id and mainURL are required"}), 400
+        return jsonify({"error": "name, id and mainURL are required"}), 400
     
     # Create build directory (unique per user request)
     build_id = str(uuid.uuid4())
@@ -210,7 +210,8 @@ def generate_app(label_id):
  
     try:
         # Run the build command
-        subprocess.check_call(["bash", "-c", f"cd {WEBAPK_PATH} && ./make.sh build {conf_path}"])
+        subprocess.check_call(f"cd {WEBAPK_PATH} && ./make.sh build {conf_path}", shell=True)
+
         
         # The script outputs something like app-release.apk
         apk_output = f"{WEBAPK_PATH}/{app_id}.apk"
