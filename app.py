@@ -186,7 +186,8 @@ def generate_app():
     
     app_name = "Artifact"
     app_id = "001"
-    mainURL = "host_replace_bro/exhibit/"+str(label_id)
+    #mainURL = "host_replace_bro/exhibit/"+str(label_id)
+    mainURL="https://google.in"
     icon = None
     
     if not app_name or not app_id or not mainURL:
