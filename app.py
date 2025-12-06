@@ -183,7 +183,6 @@ WEBAPK_PATH = "/opt/webapk"
 @app.route("/generate-app/<label_id>", methods=["POST"])
 def generate_app():
     
-    
     app_name = "Artifact"
     app_id = "001"
     #mainURL = "host_replace_bro/exhibit/"+str(label_id)
@@ -229,6 +228,11 @@ def generate_app():
         # ⚠ Optional: cleanup build folders
         shutil.rmtree(work_dir, ignore_errors=True)
 """
+
+@app.route("/testy")
+def tests():
+    return "testing bro"
+
 
 
 if __name__ == "__main__":
