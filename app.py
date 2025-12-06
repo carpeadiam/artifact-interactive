@@ -172,6 +172,78 @@ def unified_exhibit_site(label_id):
         current_template=f'{template_type}_label.html',
         qr_code_image=qr_code_image # Pass the Base64 image to the template
     )
+
+
+##################### APK CREATOR #######################
+from flask send_file
+import os, subprocess, uuid, shutil, json
+
+WEBAPK_PATH = "/opt/webapk"
+
+@app.route("/generate-app", methods=["POST"])
+def generate_app():
+    data = request.json
+    
+    app_name = data.get("name")
+    app_id = data.get("id")
+    mainURL = data.get("mainURL")
+    icon = data.get("icon", None)  # Optional
+    
+    if not app_name or not app_id or not mainURL:
+        return jsonify({"error": "name, id and mainURL are required"}), 400
+    
+    # Create build directory (unique per user request)
+    build_id = str(uuid.uuid4())
+    work_dir = f"{WEBAPK_PATH}/builds/{build_id}"
+    os.makedirs(work_dir, exist_ok=True)
+
+    # Generate webapk.conf dynamically
+    conf_path = f"{work_dir}/webapk.conf"
+    with open(conf_path, "w") as f:
+        f.write(f"id = {app_id}\n")
+        f.write(f"name = {app_name}\n")
+        f.write(f"mainURL = {mainURL}\n")
+        if icon:
+            f.write(f"icon = {icon}\n")
+        f.write("allowSubdomains = true\n")
+        f.write("enableExternalLinks = true\n")
+
+    try:
+        # Run the build command
+        subprocess.check_call(["bash", "-c", f"cd {WEBAPK_PATH} && ./make.sh build {conf_path}"])
+        
+        # The script outputs something like app-release.apk
+        apk_output = f"{WEBAPK_PATH}/{app_id}.apk"
+
+        if not os.path.exists(apk_output):
+            return jsonify({"error": "APK build failed"}), 500
+        
+        return send_file(apk_output, as_attachment=True, download_name=f"{app_name}.apk")
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({"error": "Build process failed", "details": str(e)}), 500
+
+"""
+    finally:
+        # ⚠ Optional: cleanup build folders
+        shutil.rmtree(work_dir, ignore_errors=True)
+"""
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
  
 @app.errorhandler(404)
 def page_not_found(e):
