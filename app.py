@@ -175,7 +175,7 @@ def unified_exhibit_site(label_id):
 
 
 ##################### APK CREATOR #######################
-from flask send_file
+from flask import send_file
 import os, subprocess, uuid, shutil, json
 
 WEBAPK_PATH = "/opt/webapk"
