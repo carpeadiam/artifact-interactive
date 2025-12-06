@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 # --- Configuration ---
 UPLOADS_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'mp3', 'wav'}
-
+ 
 app = Flask(__name__)
 app.config['UPLOADS_FOLDER'] = UPLOADS_FOLDER
 # Ensure the upload directory exists
