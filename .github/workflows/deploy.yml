@@ -17,7 +17,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.1
         with:
           # This secret holds the private key you generated (see step 3)
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.cp1 }}
 
       # --- 2. Remote Deployment Commands ---
       - name: Pull and Restart App on Civo Instance
