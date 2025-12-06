@@ -17,7 +17,7 @@ cd $APP_DIR
 
 echo "Cloning Flask application..."
 # IMPORTANT: Replace with your actual GitHub repository URL
-git clone https://github.com/azure-glades/artifact-interactive.git .
+git clone https://github.com/carpeadiam/artifact-interactive.git .
 
 echo "Setting up virtual environment and installing dependencies..."
 python3 -m venv venv
