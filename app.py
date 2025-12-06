@@ -229,7 +229,7 @@ def generate_app():
         shutil.rmtree(work_dir, ignore_errors=True)
 """
 
-@app.route("/testy")
+@app.route("/testy", methods=["GET"])
 def tests():
     return "testing bro"
 
