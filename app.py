@@ -180,7 +180,7 @@ import os, subprocess, uuid, shutil, json
 
 WEBAPK_PATH = "/opt/webapk"
 
-@app.route("/generate-app/<label_id>", methods=["POST"])
+@app.route("/generate-app/<label_id>", methods=["POST","GET"])
 def generate_app():
     
     app_name = "Artifact"
