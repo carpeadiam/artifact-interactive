@@ -207,7 +207,7 @@ def generate_app():
             f.write(f"icon = {icon}\n")
         f.write("allowSubdomains = true\n")
         f.write("enableExternalLinks = true\n")
-
+ 
     try:
         # Run the build command
         subprocess.check_call(["bash", "-c", f"cd {WEBAPK_PATH} && ./make.sh build {conf_path}"])
