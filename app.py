@@ -180,17 +180,17 @@ import os, subprocess, uuid, shutil, json
 
 WEBAPK_PATH = "/opt/webapk"
 
-@app.route("/generate-app", methods=["POST"])
+@app.route("/generate-app/<label_id>", methods=["POST"])
 def generate_app():
-    data = request.json
     
-    app_name = data.get("name")
-    app_id = data.get("id")
-    mainURL = data.get("mainURL")
-    icon = data.get("icon", None)  # Optional
+    
+    app_name = "Artifact"
+    app_id = "001"
+    mainURL = "host_replace_bro/exhibit/"+str(label_id)
+    icon = None
     
     if not app_name or not app_id or not mainURL:
-        return jsonify({"error": "name, id and mainURL are required"}), 400
+        return jsoify({"error": "name, id and mainURL are required"}), 400
     
     # Create build directory (unique per user request)
     build_id = str(uuid.uuid4())
