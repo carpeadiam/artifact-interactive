@@ -172,7 +172,7 @@ def unified_exhibit_site(label_id):
         current_template=f'{template_type}_label.html',
         qr_code_image=qr_code_image # Pass the Base64 image to the template
     )
-
+ 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('error_404.html', label_id='N/A'), 404
