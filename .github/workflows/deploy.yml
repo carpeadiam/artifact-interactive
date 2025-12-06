@@ -25,7 +25,7 @@ jobs:
           # The SSH command to connect to your Civo Compute instance
           # IMPORTANT: Replace <YOUR_CIVO_IP> with the public IP of your instance
           # We use the 'ubuntu' user, which is standard on Ubuntu images.
-          ssh -o StrictHostKeyChecking=no ubuntu@212.2.248.120 << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@212.2.254.217 << 'EOF'
             echo "Deployment started on remote server..."
             
             # Navigate to the app directory
