@@ -184,7 +184,7 @@ WEBAPK_PATH = "/opt/webapk"
 def generate_app(label_id):
     
     app_name = "Artifact"
-    app_id = "001"
+    app_id = "app001"
     #mainURL = "host_replace_bro/exhibit/"+str(label_id)
     mainURL="https://google.in"
     icon = None
